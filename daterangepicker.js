@@ -47,6 +47,7 @@
         this.showWeekNumbers = false;
         this.showISOWeekNumbers = false;
         this.showCustomRangeLabel = true;
+        this.customTitle = false;
         this.timePicker = false;
         this.timePicker24Hour = false;
         this.timePickerIncrement = 1;
@@ -239,6 +240,9 @@
         if (typeof options.maxYear === 'number')
             this.maxYear = options.maxYear;
 
+        if (typeof options.customTitle === 'string')
+            this.customTitle = options.customTitle;
+
         if (typeof options.showCustomRangeLabel === 'boolean')
             this.showCustomRangeLabel = options.showCustomRangeLabel;
 
@@ -321,6 +325,8 @@
 
                 if (typeof options.ranges[range][1] === 'string')
                     end = moment(options.ranges[range][1], this.locale.format);
+          		else if (this.singleDatePicker)
+                    end = start.clone();
                 else
                     end = moment(options.ranges[range][1]);
 
@@ -357,6 +363,10 @@
                 list += '<li data-range-key="' + this.locale.customRangeLabel + '">' + this.locale.customRangeLabel + '</li>';
             }
             list += '</ul>';
+   			if (this.customTitle) {
+                list = '<span>' + this.customTitle + '</span>' + list;
+            }
+
             this.container.find('.ranges').prepend(list);
         }
 

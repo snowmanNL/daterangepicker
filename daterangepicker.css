@@ -334,6 +334,13 @@
   color: #fff;
 }
 
+ .daterangepicker   .ranges span {
+        font-size: 12px;
+        font-weight: bold;
+        color: #357ebd;
+        margin-bottom: 8px;
+    }
+
 /*  Larger Screen Styling */
 @media (min-width: 564px) {
   .daterangepicker {
